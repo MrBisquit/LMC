@@ -3,7 +3,7 @@
     public static class Memory
     {
         public static int MemSize { get; set { MemSize = value; Prep(); }  }
-        public static List<byte> Mem { get; private set; } = new();
+        public static List<int> Mem { get; private set; } = new();
 
         internal static Events.MemUpdate update = new();
 
@@ -13,12 +13,12 @@
             Events.Memory.OnMemResized();
         }
 
-        public static bool Set(int addr, byte val)
+        public static bool Set(int addr, int val)
         {
             if (addr > MemSize) return false;
             else
             {
-                byte old = Mem[addr];
+                int old = Mem[addr];
                 Mem[addr] = val;
                 Events.Memory.OnMemChanged(new(addr, old, val));
                 return true;

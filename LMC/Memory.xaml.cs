@@ -28,6 +28,30 @@ namespace LMC
         {
             Hide();
             e.Cancel = true;
+
+            Internal.Events.Memory.MemChanged += Memory_MemChanged;
+            Internal.Events.Memory.MemResized += Memory_MemResized;
+            Internal.Events.Memory.MemCleared += Memory_MemCleared;
+        }
+
+        private void Memory_MemCleared(object? sender, EventArgs e)
+        {
+            Update();
+        }
+
+        private void Memory_MemResized(object? sender, EventArgs e)
+        {
+            Update();
+        }
+
+        private void Memory_MemChanged(object? sender, Internal.Events.MemUpdate.MemChangedArgs e)
+        {
+            Update();
+        }
+
+        private void Update()
+        {
+
         }
     }
 }

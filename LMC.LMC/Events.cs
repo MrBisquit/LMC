@@ -10,11 +10,11 @@ namespace LMC.Internal
         {
             public class MemChangedArgs
             {
-                public int Addr  { get; private set; }
-                public byte From { get; private set; }
-                public byte To   { get; private set; }
+                public int Addr { get; private set; }
+                public int From { get; private set; }
+                public int To   { get; private set; }
 
-                public MemChangedArgs(int Addr, byte From, byte To)
+                public MemChangedArgs(int Addr, int From, int To)
                 {
                     this.Addr = Addr;
                     this.From = From;

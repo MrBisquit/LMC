@@ -1,6 +1,5 @@
 ﻿using System.IO;
 using System.Windows;
-using LMC;
 using Microsoft.Win32;
 
 namespace LMC
@@ -15,11 +14,24 @@ namespace LMC
             InitializeComponent();
 
             Style = (Style)FindResource(typeof(Window));
+
+            edRT = new System.Timers.Timer(2500);
+            edRT.Elapsed += EdRT_Elapsed;
+            edRT.AutoReset = false;
+        }
+
+        private void EdRT_Elapsed(object? sender, System.Timers.ElapsedEventArgs e)
+        {
+            Dispatcher.Invoke(() =>
+            {
+                EventDisplay.Text = "";
+            });
         }
 
         Memory memory = new();
         Screen screen = new();
         Help help = new();
+        System.Timers.Timer edRT;
 
         public static string? SavePath = null;
 
@@ -47,7 +59,6 @@ namespace LMC
 
         private void RunBtn_Click(object sender, RoutedEventArgs e)
         {
-            memory.Show();
             screen.Show();
             Internal.Run.StartRun(Code.Text);
         }
@@ -60,6 +71,8 @@ namespace LMC
         public void EventFired(object? sender, string text)
         {
             EventDisplay.Text = text;
+            edRT.Stop();
+            edRT.Start();
         }
 
         private void OpenBtn_Click(object sender, RoutedEventArgs e)
