@@ -1,5 +1,7 @@
-﻿using System.Windows;
+﻿using System.IO;
+using System.Windows;
 using LMC;
+using Microsoft.Win32;
 
 namespace LMC
 {
@@ -18,6 +20,15 @@ namespace LMC
         Memory memory = new();
         Screen screen = new();
         Help help = new();
+
+        public static string? SavePath = null;
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            memory.Close();
+            screen.Close();
+            help.Close();
+        }
 
         private void ViewMemory_Click(object sender, RoutedEventArgs e)
         {
@@ -49,6 +60,37 @@ namespace LMC
         public void EventFired(object? sender, string text)
         {
             EventDisplay.Text = text;
+        }
+
+        private void OpenBtn_Click(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog ofd = new();
+            if(ofd.ShowDialog() == true)
+            {
+                Code.Text = File.ReadAllText(ofd.FileName);
+                SavePath = ofd.FileName;
+                SaveBtn.IsEnabled = true;
+            }
+        }
+
+        private void SaveBtn_Click(object sender, RoutedEventArgs e)
+        {
+            if (SavePath == null) return;
+            else
+            {
+                File.WriteAllText(SavePath, Code.Text);
+            }
+        }
+
+        private void SaveAsBtn_Click(object sender, RoutedEventArgs e)
+        {
+            SaveFileDialog sfd = new();
+            if(sfd.ShowDialog() == true)
+            {
+                File.WriteAllText(sfd.FileName, Code.Text);
+                SavePath = sfd.FileName;
+                SaveBtn.IsEnabled = true;
+            }
         }
     }
 }

@@ -8,7 +8,8 @@
         Title="LMC Editor - WTDawson"
         Height="450"
         Width="800"
-        Loaded="Window_Loaded">
+        Loaded="Window_Loaded"
+        Closing="Window_Closing">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
@@ -24,9 +25,9 @@
 
         <Menu Grid.ColumnSpan="3">
             <MenuItem Header="File">
-                <MenuItem Header="Open" />
-                <MenuItem Header="Save" />
-                <MenuItem Header="Save As..." />
+                <MenuItem Header="Open" Name="OpenBtn" Click="OpenBtn_Click" />
+                <MenuItem Header="Save" Name="SaveBtn" Click="SaveBtn_Click" IsEnabled="False" />
+                <MenuItem Header="Save As..." Name="SaveAsBtn" Click="SaveAsBtn_Click" />
             </MenuItem>
             <MenuItem Header="Run" Name="RunBtn" Click="RunBtn_Click" />
             <MenuItem Header="View">
