@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="LMC.LMC/LMC.LMC.csproj" />
+  <Project Path="LMC/LMC.csproj" />
+</Solution>
