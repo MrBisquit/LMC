@@ -2,7 +2,8 @@
 {
     public static class Memory
     {
-        public static int MemSize { get; set { MemSize = value; Prep(); }  }
+        public static int MemSize { get { return memSize; } set { memSize = value; Prep(); } }
+        private static int memSize;
         public static List<int> Mem { get; private set; } = new();
 
         internal static Events.MemUpdate update = new();

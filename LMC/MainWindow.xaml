@@ -53,10 +53,10 @@
                 <Separator />
 
                 <TextBlock>Clock speed (Min 1, Max 1048576):</TextBlock>
-                <TextBox Name="ClockSpeed" Text="1024" />
+                <TextBox Name="ClockSpeed" Text="1024" TextChanged="ClockSpeed_TextChanged" />
 
                 <TextBlock>Memory (Min 100, Max 1048576):</TextBlock>
-                <TextBox Name="MemorySize" Text="100" />
+                <TextBox Name="MemorySize" Text="100" TextChanged="MemorySize_TextChanged" />
 
                 <TextBlock>Input variables:</TextBlock>
                 <ComboBox Name="InputVariables">

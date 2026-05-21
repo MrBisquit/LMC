@@ -40,6 +40,8 @@ namespace LMC
             memory.Close();
             screen.Close();
             help.Close();
+
+            Environment.Exit(0);
         }
 
         private void ViewMemory_Click(object sender, RoutedEventArgs e)
@@ -104,6 +106,24 @@ namespace LMC
                 SavePath = sfd.FileName;
                 SaveBtn.IsEnabled = true;
             }
+        }
+
+        private void ClockSpeed_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
+        {
+
+        }
+
+        private void MemorySize_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
+        {
+            try
+            {
+                int mem = int.Parse(MemorySize.Text);
+
+                if (mem >= 100 && mem <= 1048576)
+                {
+                    Internal.Memory.MemSize = mem;
+                }
+            } catch { }
         }
     }
 }
