@@ -13,7 +13,7 @@ namespace LMC.LMC
 
         public static Mode CurrentMode { get; set { CurrentMode = value; PrepMemory(); } }
 
-        public static KeyValuePair<ConsoleKey, int> MemKeyPair { get; set; } 
+        public static List<KeyValuePair<ConsoleKey, int>> MemKeyPairs { get; set; } = new();
 
         public static void PrepMemory()
         {
