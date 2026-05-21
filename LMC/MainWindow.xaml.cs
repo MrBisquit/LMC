@@ -1,13 +1,5 @@
-﻿using System.Text;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+﻿using System.Windows;
+using LMC;
 
 namespace LMC
 {
@@ -40,6 +32,23 @@ namespace LMC
         private void ViewHelp_Click(object sender, RoutedEventArgs e)
         {
             help.Show();
+        }
+
+        private void RunBtn_Click(object sender, RoutedEventArgs e)
+        {
+            memory.Show();
+            screen.Show();
+            Internal.Run.StartRun(Code.Text);
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            Internal.Events.All.EventFired += EventFired;
+        }
+
+        public void EventFired(object? sender, string text)
+        {
+            EventDisplay.Text = text;
         }
     }
 }

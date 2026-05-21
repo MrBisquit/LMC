@@ -7,11 +7,13 @@
         mc:Ignorable="d"
         Title="LMC Editor - WTDawson"
         Height="450"
-        Width="800">
+        Width="800"
+        Loaded="Window_Loaded">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
         <Grid.ColumnDefinitions>
@@ -26,7 +28,7 @@
                 <MenuItem Header="Save" />
                 <MenuItem Header="Save As..." />
             </MenuItem>
-            <MenuItem Header="Run" />
+            <MenuItem Header="Run" Name="RunBtn" Click="RunBtn_Click" />
             <MenuItem Header="View">
                 <MenuItem Header="Memory" Name="ViewMemory" Click="ViewMemory_Click" />
                 <MenuItem Header="Screen" Name="ViewScreen" Click="ViewScreen_Click" />
@@ -64,5 +66,9 @@
                 <TextBlock>Display size:</TextBlock>
             </StackPanel>
         </ScrollViewer>
+
+        <StatusBar Grid.Row="2" Grid.ColumnSpan="3">
+            <TextBlock Name="EventDisplay"></TextBlock>
+        </StatusBar>
     </Grid>
 </Window>

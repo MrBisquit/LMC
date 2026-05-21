@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace LMC.LMC
+namespace LMC.Internal
 {
     public static class Input
     {

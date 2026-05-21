@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace LMC.LMC.Parsing
+namespace LMC.Internal.Parsing
 {
     public static class Parser
     {
