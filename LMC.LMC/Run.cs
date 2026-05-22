@@ -9,6 +9,7 @@ namespace LMC.Internal
         public static void StartRun(string instr)
         {
             Memory.Clear();
+            Screen.Clear();
         }
     }
 }

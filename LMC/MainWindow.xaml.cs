@@ -90,8 +90,9 @@ namespace LMC
             };
 
             Code.Text = string.Join('\n', def);
-
             CodeUpdateLN();
+
+            screen.AutoSize();
         }
 
         public void EventFired(object? sender, string text)

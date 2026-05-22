@@ -8,8 +8,10 @@
         Title="LMC Screen - WTDawson"
         Height="450"
         Width="800"
-        Closing="Window_Closing">
-    <Grid>
-        
+        Closing="Window_Closing"
+        Loaded="Window_Loaded"
+        ResizeMode="NoResize">
+    <Grid Background="#A5A5A5">
+        <Grid Margin="2.5" Name="InnerGrid"></Grid>
     </Grid>
 </Window>

@@ -113,6 +113,53 @@
                     <TextBox Name="ScreenWidth" Text="5" TextChanged="ScreenWidth_TextChanged" />
                     <TextBox Grid.Column="2" Name="ScreenHeight" Text="5" TextChanged="ScreenHeight_TextChanged" />
                 </Grid>
+
+                <TextBlock FontSize="17" FontWeight="Bold">Information</TextBlock>
+
+                <Separator />
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+
+                    <TextBlock Grid.Row="0">Total instructions</TextBlock>
+                    <TextBlock Grid.Row="0" Grid.Column="1">0</TextBlock>
+
+                    <TextBlock Grid.Row="1">Total jumps</TextBlock>
+                    <TextBlock Grid.Row="1" Grid.Column="1">0</TextBlock>
+
+                    <Separator Grid.Row="2" Grid.ColumnSpan="2" />
+
+                    <!-- Current run -->
+                    
+                    <TextBlock Grid.Row="3">Current cycle</TextBlock>
+                    <TextBlock Grid.Row="3" Grid.Column="1">0</TextBlock>
+
+                    <TextBlock Grid.Row="4">Total cycles</TextBlock>
+                    <TextBlock Grid.Row="4" Grid.Column="1">0</TextBlock>
+
+                    <TextBlock Grid.Row="5">Total memory</TextBlock>
+                    <TextBlock Grid.Row="5" Grid.Column="1">0</TextBlock>
+
+                    <TextBlock Grid.Row="6">Accumulator value</TextBlock>
+                    <TextBlock Grid.Row="6" Grid.Column="1">0</TextBlock>
+
+                    <TextBlock Grid.Row="7">Current Instruction Register</TextBlock>
+                    <TextBlock Grid.Row="7" Grid.Column="1">0</TextBlock>
+                </Grid>
             </StackPanel>
         </ScrollViewer>
 

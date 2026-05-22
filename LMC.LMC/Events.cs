@@ -68,13 +68,40 @@ namespace LMC.Internal
 
         public class ScreenUpdate
         {
+            public class ScreenChangedArgs
+            {
+                public int X { get; private set; }
+                public int Y { get; private set; }
+                public int Val { get; private set; }
+
+                public ScreenChangedArgs(int X, int Y, int Val)
+                {
+                    this.X = X;
+                    this.Y = Y;
+                    this.Val = Val;
+                }
+            }
 
             public event EventHandler? ScreenResized;
+            public event EventHandler? ScreenCleared;
+            public event EventHandler<ScreenChangedArgs>? ScreenChanged;
 
             public virtual void OnResized()
             {
                 ScreenResized?.Invoke(this, EventArgs.Empty);
                 All.OnEventFired($"Screen resized (W {Internal.Screen.Width} H {Internal.Screen.Height})");
+            }
+
+            public virtual void OnCleared()
+            {
+                ScreenCleared?.Invoke(this, EventArgs.Empty);
+                All.OnEventFired("Screen cleared");
+            }
+
+            public virtual void OnChanged(ScreenChangedArgs args)
+            {
+                ScreenChanged?.Invoke(this, args);
+                All.OnEventFired($"Screen changed (X {args.X} Y {args.Y} V {args.Val})");
             }
         }
 
