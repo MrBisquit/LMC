@@ -37,12 +37,50 @@
             </MenuItem>
         </Menu>
 
-        <TextBox Grid.Row="1"
-                 Name="Code"
-                 AllowDrop="True"
-                 VerticalScrollBarVisibility="Visible"
-                 AcceptsReturn="True"
-                 AcceptsTab="True" />
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            
+            <Grid.RowDefinitions>
+                <RowDefinition Height="4*" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <ScrollViewer Name="CodeLNScroll"
+                          VerticalScrollBarVisibility="Hidden"
+                          HorizontalScrollBarVisibility="Disabled">
+                <TextBlock Name="CodeLN"
+                           VerticalAlignment="Top"
+                           TextWrapping="NoWrap" />
+            </ScrollViewer>
+            <ScrollViewer
+                Name="CodeScroll"
+                VerticalScrollBarVisibility="Visible"
+                ScrollChanged="CodeScroll_ScrollChanged"
+                Grid.Column="1">
+                <TextBox Name="Code"
+                    AllowDrop="True"
+                    VerticalScrollBarVisibility="Hidden"
+                    AcceptsReturn="True"
+                    AcceptsTab="True"
+                    TextChanged="Code_TextChanged" />
+            </ScrollViewer>
+
+            <GridSplitter Grid.Row="1" Grid.ColumnSpan="2" Height="5" VerticalAlignment="Center" HorizontalAlignment="Stretch" />
+
+            <TextBox
+                Name="ReadOnlyCode"
+                IsReadOnly="True"
+                AllowDrop="True"
+                VerticalScrollBarVisibility="Visible"
+                AcceptsReturn="True"
+                AcceptsTab="True"
+                Grid.Row="2"
+                Grid.Column="1" />
+        </Grid>
 
         <GridSplitter Grid.Column="1" Grid.Row="1" Width="5" HorizontalAlignment="Center" VerticalAlignment="Stretch" />
 
@@ -59,12 +97,22 @@
                 <TextBox Name="MemorySize" Text="100" TextChanged="MemorySize_TextChanged" />
 
                 <TextBlock>Input variables:</TextBlock>
-                <ComboBox Name="InputVariables">
+                <ComboBox Name="InputVariables" SelectionChanged="InputVariables_SelectionChanged">
                     <ComboBoxItem IsSelected="True">No input</ComboBoxItem>
                     <ComboBoxItem>Up/Down/Left/Right</ComboBoxItem>
                 </ComboBox>
 
-                <TextBlock>Display size:</TextBlock>
+                <TextBlock>Display size (WxH, Max 100x100):</TextBlock>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition Width="3" />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+
+                    <TextBox Name="ScreenWidth" Text="5" TextChanged="ScreenWidth_TextChanged" />
+                    <TextBox Grid.Column="2" Name="ScreenHeight" Text="5" TextChanged="ScreenHeight_TextChanged" />
+                </Grid>
             </StackPanel>
         </ScrollViewer>
 

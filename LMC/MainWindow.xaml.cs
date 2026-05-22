@@ -1,4 +1,5 @@
 ﻿using System.IO;
+using System.Text;
 using System.Windows;
 using Microsoft.Win32;
 
@@ -44,6 +45,11 @@ namespace LMC
             Environment.Exit(0);
         }
 
+        private void UpdateDefaultCode()
+        {
+            ReadOnlyCode.Text = string.Join('\n', Internal.Parsing.Instructions.GenDefData());
+        }
+
         private void ViewMemory_Click(object sender, RoutedEventArgs e)
         {
             memory.Show();
@@ -68,6 +74,24 @@ namespace LMC
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             Internal.Events.All.EventFired += EventFired;
+
+            UpdateDefaultCode();
+
+            string[] def =
+            {
+                "\tINP",
+                "\tSTA\tnum1",
+                "\tINP",
+                "\tADD\tnum1",
+                "\tOUT",
+                "\tHLT",
+                "",
+                "num1\tDAT"
+            };
+
+            Code.Text = string.Join('\n', def);
+
+            CodeUpdateLN();
         }
 
         public void EventFired(object? sender, string text)
@@ -124,6 +148,75 @@ namespace LMC
                     Internal.Memory.MemSize = mem;
                 }
             } catch { }
+        }
+
+        private void ScreenWidth_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
+        {
+            try
+            {
+                int w = int.Parse(ScreenWidth.Text);
+
+                if(w <= 100)
+                {
+                    Internal.Screen.Width = w;
+
+                    UpdateDefaultCode();
+                }
+            } catch { }
+        }
+
+        private void ScreenHeight_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
+        {
+            try
+            {
+                int h = int.Parse(ScreenHeight.Text);
+
+                if (h <= 100)
+                {
+                    Internal.Screen.Height = h;
+
+                    UpdateDefaultCode();
+                }
+            }
+            catch { }
+        }
+
+        private void InputVariables_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
+        {
+            switch(InputVariables.SelectedIndex)
+            {
+                case 0:
+                    Internal.Input.CurrentMode = Internal.Input.Mode.None;
+                    break;
+                case 1:
+                    Internal.Input.CurrentMode = Internal.Input.Mode.UDLR;
+                    break;
+            }
+
+            UpdateDefaultCode();
+        }
+
+        private void CodeScroll_ScrollChanged(object sender, System.Windows.Controls.ScrollChangedEventArgs e)
+        {
+            CodeLNScroll.ScrollToVerticalOffset(e.VerticalOffset);
+        }
+
+        private void CodeUpdateLN()
+        {
+            int lc = Code.LineCount;
+            StringBuilder sb = new();
+
+            for(int i = 1; i <= lc; i++)
+            {
+                sb.AppendLine(i.ToString());
+            }
+
+            CodeLN.Text = sb.ToString();
+        }
+
+        private void Code_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
+        {
+            CodeUpdateLN();
         }
     }
 }

@@ -45,6 +45,39 @@ namespace LMC.Internal
             }
         }
 
+        public class InputUpdate
+        {
+            public class InputModeChangedArgs
+            {
+                public Input.Mode NewMode { get; private set; }
+
+                public InputModeChangedArgs(Input.Mode NewMode)
+                {
+                    this.NewMode = NewMode;
+                }
+            }
+
+            public event EventHandler<InputModeChangedArgs>? ModeChanged;
+
+            public virtual void OnModeChanged(InputModeChangedArgs args)
+            {
+                ModeChanged?.Invoke(this, args);
+                All.OnEventFired($"Input mode changed (M {args.NewMode})");
+            }
+        }
+
+        public class ScreenUpdate
+        {
+
+            public event EventHandler? ScreenResized;
+
+            public virtual void OnResized()
+            {
+                ScreenResized?.Invoke(this, EventArgs.Empty);
+                All.OnEventFired($"Screen resized (W {Internal.Screen.Width} H {Internal.Screen.Height})");
+            }
+        }
+
         public class AllUpdate
         {
             public event EventHandler<string>? EventFired;
@@ -56,6 +89,8 @@ namespace LMC.Internal
         }
 
         public static MemUpdate Memory = new();
+        public static InputUpdate Input = new();
+        public static ScreenUpdate Screen = new();
         public static AllUpdate All = new();
     }
 }
