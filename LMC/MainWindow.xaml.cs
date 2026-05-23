@@ -219,5 +219,15 @@ namespace LMC
         {
             CodeUpdateLN();
         }
+
+        private void Window_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            Internal.Input.AcceptInput(Maps.KeyToConsole(e.Key), true);
+        }
+
+        private void Window_KeyUp(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            Internal.Input.AcceptInput(Maps.KeyToConsole(e.Key), false);
+        }
     }
 }

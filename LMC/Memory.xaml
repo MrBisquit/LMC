@@ -8,10 +8,12 @@
         Title="LMC Memory - WTDawson"
         Height="450"
         Width="800"
-        Closing="Window_Closing">
+        Closing="Window_Closing"
+        Loaded="Window_Loaded"
+        ResizeMode="NoResize">
     <Grid>
         <ScrollViewer>
-            
+            <Grid Name="InnerGrid" Margin="2.5"></Grid>
         </ScrollViewer>
     </Grid>
 </Window>

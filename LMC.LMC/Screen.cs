@@ -12,7 +12,14 @@ namespace LMC.Internal
         static int height = 5;
 
         public static int[,] Board { get { return board; } }
-        static int[,] board;
+        static int[,] board = new int[0, 0];
+
+        public static void Set(int x, int y, int v)
+        {
+            if (x > width || y > height) return;
+            board[y, x] = v;
+            Events.Screen.OnChanged(new(x, y, v));
+        }
 
         /*private static int[,] InConv(List<List<int>> v)
         {

@@ -50,14 +50,13 @@ namespace LMC
         private void Screen_ScreenResized(object? sender, EventArgs e)
         {
             AutoSize();
+            Regen();
         }
 
         public void AutoSize()
         {
             Width = (25 * Internal.Screen.Width) + 10 + (5 * Internal.Screen.Width);
             Height = (25 * Internal.Screen.Height) + 10 + (5 * Internal.Screen.Height) + 10;
-
-            Regen();
         }
 
         public void Regen()
@@ -66,7 +65,7 @@ namespace LMC
             InnerGrid.ColumnDefinitions.Clear();
             InnerGrid.RowDefinitions.Clear();
 
-            for(int i = 0; i <  Internal.Screen.Width; i++)
+            for(int i = 0; i < Internal.Screen.Width; i++)
                 InnerGrid.ColumnDefinitions.Add(new());
 
             for (int i = 0; i < Internal.Screen.Height; i++)
@@ -89,6 +88,15 @@ namespace LMC
                         case 1:
                             rect.Fill = new SolidColorBrush(Colors.White);
                             break;
+                        case 2:
+                            rect.Fill = new SolidColorBrush(Colors.Red);
+                            break;
+                        case 3:
+                            rect.Fill = new SolidColorBrush(Colors.Green);
+                            break;
+                        case 4:
+                            rect.Fill = new SolidColorBrush(Colors.Blue);
+                            break;
                         case 0:
                         default:
                             rect.Fill = new SolidColorBrush(Colors.Black);
@@ -98,6 +106,16 @@ namespace LMC
                     InnerGrid.Children.Add(rect);
                 }
             }
+        }
+
+        private void Window_KeyDown(object sender, KeyEventArgs e)
+        {
+            Internal.Input.AcceptInput(Maps.KeyToConsole(e.Key), true);
+        }
+
+        private void Window_KeyUp(object sender, KeyEventArgs e)
+        {
+            Internal.Input.AcceptInput(Maps.KeyToConsole(e.Key), false);
         }
     }
 }
