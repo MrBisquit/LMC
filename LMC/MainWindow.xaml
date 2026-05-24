@@ -135,32 +135,36 @@
                         <RowDefinition Height="Auto" />
                         <RowDefinition Height="Auto" />
                         <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
                     </Grid.RowDefinitions>
 
                     <TextBlock Grid.Row="0">Total instructions</TextBlock>
-                    <TextBlock Grid.Row="0" Grid.Column="1">0</TextBlock>
+                    <TextBlock Grid.Row="0" Grid.Column="1" Name="STotalInstructions">0</TextBlock>
 
                     <TextBlock Grid.Row="1">Total jumps</TextBlock>
-                    <TextBlock Grid.Row="1" Grid.Column="1">0</TextBlock>
+                    <TextBlock Grid.Row="1" Grid.Column="1" Name="STotalJumps">0</TextBlock>
 
-                    <Separator Grid.Row="2" Grid.ColumnSpan="2" />
+                    <TextBlock Grid.Row="2">Total data</TextBlock>
+                    <TextBlock Grid.Row="2" Grid.Column="1" Name="STotalVariables">0</TextBlock>
+
+                    <Separator Grid.Row="3" Grid.ColumnSpan="2" />
 
                     <!-- Current run -->
                     
-                    <TextBlock Grid.Row="3">Current cycle</TextBlock>
-                    <TextBlock Grid.Row="3" Grid.Column="1">0</TextBlock>
-
-                    <TextBlock Grid.Row="4">Total cycles</TextBlock>
+                    <TextBlock Grid.Row="4">Current cycle</TextBlock>
                     <TextBlock Grid.Row="4" Grid.Column="1">0</TextBlock>
 
-                    <TextBlock Grid.Row="5">Total memory</TextBlock>
+                    <TextBlock Grid.Row="5">Total cycles</TextBlock>
                     <TextBlock Grid.Row="5" Grid.Column="1">0</TextBlock>
 
-                    <TextBlock Grid.Row="6">Accumulator value</TextBlock>
+                    <TextBlock Grid.Row="6">Total memory</TextBlock>
                     <TextBlock Grid.Row="6" Grid.Column="1">0</TextBlock>
 
-                    <TextBlock Grid.Row="7">Current Instruction Register</TextBlock>
+                    <TextBlock Grid.Row="7">Accumulator value</TextBlock>
                     <TextBlock Grid.Row="7" Grid.Column="1">0</TextBlock>
+
+                    <TextBlock Grid.Row="8">Current Instruction Register</TextBlock>
+                    <TextBlock Grid.Row="8" Grid.Column="1">0</TextBlock>
                 </Grid>
             </StackPanel>
         </ScrollViewer>

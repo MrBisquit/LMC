@@ -37,6 +37,8 @@ namespace LMC
             Internal.Events.Memory.MemCleared += Memory_MemCleared;
         }
 
+        int changed = -1;
+
         private void Memory_MemCleared(object? sender, EventArgs e)
         {
             Regen();
@@ -49,6 +51,7 @@ namespace LMC
 
         private void Memory_MemChanged(object? sender, Internal.Events.MemUpdate.MemChangedArgs e)
         {
+            changed = e.Addr;
             Regen();
         }
 

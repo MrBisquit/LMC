@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using static LMC.Internal.Events.ScreenUpdate;
 
 namespace LMC.Internal
 {
@@ -105,6 +106,39 @@ namespace LMC.Internal
             }
         }
 
+        public class Errors
+        {
+            public class Error
+            {
+                public string Err { get; private set; }
+                public int? Line { get; private set; }
+
+                public Error(string Err, int? Line)
+                {
+                    this.Err = Err;
+                    this.Line = Line;
+                }
+
+            }
+            public event EventHandler<Error>? ErrorEv;
+
+            public virtual void OnError(Error args)
+            {
+                ErrorEv?.Invoke(this, args);
+                All.OnEventFired($"Error (E {args.Err} L {args.Line})");
+            }
+        }
+
+        public class Misc
+        {
+            public event EventHandler? StatsUpdated;
+
+            public virtual void OnStatsUpdated()
+            {
+                StatsUpdated?.Invoke(this, EventArgs.Empty);
+            }
+        }
+
         public class AllUpdate
         {
             public event EventHandler<string>? EventFired;
@@ -118,6 +152,8 @@ namespace LMC.Internal
         public static MemUpdate Memory = new();
         public static InputUpdate Input = new();
         public static ScreenUpdate Screen = new();
+        public static Errors errors = new();
+        public static Misc misc = new();
         public static AllUpdate All = new();
     }
 }

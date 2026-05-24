@@ -47,5 +47,138 @@ namespace LMC.Internal.Parsing
 
             return data.ToArray();
         }
+
+        public partial class Instruction
+        {
+            public virtual string ToMem() { return ""; }
+        }
+
+        public static class Instructs
+        {
+            public class INP : Instruction
+            {
+                public override string ToMem()
+                {
+                    return "901";
+                }
+            }
+
+            public class OUT : Instruction
+            {
+                public override string ToMem()
+                {
+                    return "902";
+                }
+            }
+
+            public class ADD : Instruction
+            {
+                public string arg1;
+
+                public ADD(string arg1)
+                {
+                    this.arg1 = arg1;
+                }
+
+                public override string ToMem()
+                {
+                    return $"1{Variables.GetMemFromVar(arg1)}";
+                }
+            }
+
+            public class SUB : Instruction
+            {
+                public string arg1;
+
+                public SUB(string arg1)
+                {
+                    this.arg1 = arg1;
+                }
+
+                public override string ToMem()
+                {
+                    return $"2{Variables.GetMemFromVar(arg1)}";
+                }
+            }
+
+            public class LDA : Instruction
+            {
+                public string arg1;
+
+                public LDA(string arg1)
+                {
+                    this.arg1 = arg1;
+                }
+
+                public override string ToMem()
+                {
+                    return $"5{Variables.GetMemFromVar(arg1)}";
+                }
+            }
+
+            public class STA : Instruction
+            {
+                public string arg1;
+
+                public STA(string arg1)
+                {
+                    this.arg1 = arg1;
+                }
+
+                public override string ToMem()
+                {
+                    return $"3{Variables.GetMemFromVar(arg1)}";
+                }
+            }
+            public class BRA : Instruction
+            {
+                public string arg1;
+
+                public BRA(string arg1)
+                {
+                    this.arg1 = arg1;
+                }
+
+                public override string ToMem()
+                {
+                    return $"6{Variables.GetMemFromVar(arg1)}";
+                }
+            }
+            public class BRP : Instruction
+            {
+                public string arg1;
+
+                public BRP(string arg1)
+                {
+                    this.arg1 = arg1;
+                }
+
+                public override string ToMem()
+                {
+                    return $"8{Variables.GetMemFromVar(arg1)}";
+                }
+            }
+            public class BRZ : Instruction
+            {
+                public string arg1;
+
+                public BRZ(string arg1)
+                {
+                    this.arg1 = arg1;
+                }
+
+                public override string ToMem()
+                {
+                    return $"7{Variables.GetMemFromVar(arg1)}";
+                }
+            }
+            public class HLT : Instruction
+            {
+                public override string ToMem()
+                {
+                    return "000";
+                }
+            }
+        }
     }
 }

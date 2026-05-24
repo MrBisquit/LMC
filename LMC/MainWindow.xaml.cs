@@ -93,6 +93,29 @@ namespace LMC
             CodeUpdateLN();
 
             screen.AutoSize();
+
+            Internal.Events.errors.ErrorEv += Errors_ErrorEv;
+            Internal.Events.misc.StatsUpdated += Misc_StatsUpdated;
+        }
+
+        private void Misc_StatsUpdated(object? sender, EventArgs e)
+        {
+            STotalInstructions.Text = Internal.Run.TotalInstructions.ToString();
+            STotalJumps.Text = Internal.Run.TotalJumps.ToString();
+            STotalVariables.Text = Internal.Run.TotalVariables.ToString();
+        }
+
+        private void Errors_ErrorEv(object? sender, Internal.Events.Errors.Error e)
+        {
+            MessageBox.Show(e.Err + (e.Line != null ? $"\n\n(Line: {e.Line + 1})" : ""),
+                "LMC Error - WTDawson",
+                MessageBoxButton.OK,
+                MessageBoxImage.Error);
+
+            if(e.Line != null)
+            {
+                Code.Focus();
+            }
         }
 
         public void EventFired(object? sender, string text)

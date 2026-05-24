@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Text;
 
 namespace LMC.Internal
@@ -37,9 +38,11 @@ namespace LMC.Internal
 
             board = new int[width, height];
 
-            for(int y = 0; y < height; y++)
+            Debug.WriteLine($"{width} {height}");
+
+            /*for(int y = 0; y < height; y++)
                 for(int x = 0; x < width; x++)
-                    board[y, x] = 0;
+                    board[y, x] = 0;*/
         }
 
         public static void Clear()
